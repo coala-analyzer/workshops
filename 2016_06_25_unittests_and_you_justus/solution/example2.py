@@ -5,25 +5,36 @@ from unittest import TestCase
 class Account:
     """An account stores money."""
 
-    balance = 0
-
-    transactions = []  # TODO
+    def __init__(self):
+        self.transactions = []
 
     def deposit(self, amount):
         """Deposit money on this account."""
+        self.transactions.append(amount)
 
     def withdraw(self, amount):
         """Withdraw money from this account."""
+        self.transactions.append(-amount)
 
-    def current_balance(self):
+    @property
+    def balance(self):
         """Report current balance."""
+        return sum(self.transactions)
 
 
 class AccountTestCase(TestCase):
     """."""
 
-    def test_deposit(self):
-        pass  # TODO
+    def setUp(self):
+        self.account = Account()
 
-def test_withdraw(self):
-    pass
+    def test_no_transaction(self):
+        self.assertEqual(self.account.balance, 0)
+
+    def test_deposit(self):
+        self.account.deposit(9001)
+        self.assertEqual(self.account.balance, 9001)
+
+    def test_withdraw(self):
+        self.account.withdraw(9001)
+        self.assertEqual(self.account.balance, -9001)
