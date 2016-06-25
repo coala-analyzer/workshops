@@ -1,11 +1,12 @@
 from string import punctuation
 
 def reverse_word(word):
-    """Reverse the words in a string."""
+    """Reverse a word."""
     return "".join(rev.upper() if letter.isupper() else rev.lower()
                    for rev, letter in zip(reversed(word), word))
 
 def reverse_words(sentence):
+    """Reverse the words in a string."""
     result = ''
     word = ''
     for character in sentence:
