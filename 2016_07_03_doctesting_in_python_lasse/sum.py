@@ -5,5 +5,4 @@ def sum(*args):
     >>> sum(1, 2, 3)
     6
     """
-    result = 0
-    for arg in args: result += arg
+    return args[0] + sum(*args[1:]) if len(args) > 0 else 0
